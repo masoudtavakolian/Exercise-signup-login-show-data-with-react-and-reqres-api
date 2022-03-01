@@ -3,7 +3,6 @@ import { useState } from 'react';
 import './App.css';
 import * as boot from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Preferences from './component/Preferences';
 import Dashboard from './component/Dashboard';
 import Login from './component/login/Login';
 import { BrowserRouter, Route, Routes,Link,useNavigate } from 'react-router-dom';
@@ -48,7 +47,6 @@ function App() {
         <Routes>
           <Route path='/' element={<Dashboard />} />
           <Route path='Dashboard' element={<Dashboard />} />
-          <Route path='Preferences' element={<Preferences />} />
           <Route path='/signup' element={<Dashboard />} />
           <Route path='/login' element={<Dashboard />} />
         </Routes>
