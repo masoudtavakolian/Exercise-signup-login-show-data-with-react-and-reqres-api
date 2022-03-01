@@ -5,34 +5,38 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-const getDataFromServer = (loginData, setToken,navigate) => {
-    
+const getDataFromServer = (loginData, setToken, navigate) => {
+
     console.log(loginData);
     axios.post("https://reqres.in/api/login", loginData)
-        .then(request => {toast.success('Successful ...', {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
+        .then(request => {
+            toast.success('Successful ...', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
             });
-        setToken(request.data);
-        navigate('/dashboard');})
-        .catch(error => {toast.error('Wrong username or password!\nServer Message: '+error.response.data.error, {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            })});
+            setToken(request.data);
+            navigate('/dashboard');
+        })
+        .catch(error => {
+            toast.error('Wrong username or password!\nServer Message: ' + error.response.data.error, {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            })
+        });
 }
 const Login = ({ setToken }) => {
     let navigate = useNavigate();
-    const [userInfo, setUserInfo] = useState({ email: "", password: ""});
+    const [userInfo, setUserInfo] = useState({ email: "", password: "" });
     const [error, setError] = useState({ email: "", password: "" });
     const settingToken = (token) => {
         setToken(token);
@@ -60,7 +64,7 @@ const Login = ({ setToken }) => {
                 <Form onSubmit={(e) => {
                     e.preventDefault();
                     if (!Object.keys(error).length) {
-                        getDataFromServer({ email: userInfo.email, password: userInfo.password }, settingToken,navigate);
+                        getDataFromServer({ email: userInfo.email, password: userInfo.password }, settingToken, navigate);
                     }
                     else {
                         toast.error('Enter Items!', {

@@ -18,19 +18,21 @@ const registerUser = (loginData, setToken, navigate) => {
                 pauseOnHover: true,
                 draggable: true,
                 progress: undefined,
-                });
+            });
             setToken(request.data);
             navigate('/dashboard');
         })
-        .catch(error => {toast.error("Error... \n server message: " + error.response.data.error, {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            })});
+        .catch(error => {
+            toast.error("Error... \n server message: " + error.response.data.error, {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            })
+        });
 }
 const Signup = ({ setToken }) => {
     let navigate = useNavigate();
@@ -62,10 +64,10 @@ const Signup = ({ setToken }) => {
             <div className=' App-header'>
                 <Form onSubmit={(e) => {
                     e.preventDefault();
-                    if (!Object.keys(error).length){
+                    if (!Object.keys(error).length) {
                         registerUser({ email: userInfo.email, password: userInfo.password }, settingToken, navigate);
-                        
-                        }
+
+                    }
                     else {
                         toast.error('We Need All items!', {
                             position: "top-right",
@@ -75,7 +77,7 @@ const Signup = ({ setToken }) => {
                             pauseOnHover: true,
                             draggable: true,
                             progress: undefined,
-                            });
+                        });
                         console.log(error)
                     }
 
